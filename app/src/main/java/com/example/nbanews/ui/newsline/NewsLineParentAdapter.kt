@@ -44,7 +44,7 @@ class NewsLineParentAdapter() :
             adapter = ada
         }
         holder.itemView.setOnClickListener {
-            ada?.onNewsLineClickListener?.invoke()
+
         }
     }
 
