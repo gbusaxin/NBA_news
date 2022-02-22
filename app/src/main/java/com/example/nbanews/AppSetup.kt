@@ -8,6 +8,7 @@ class AppSetup : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
     }
 
 }

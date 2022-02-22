@@ -1,7 +1,6 @@
 package com.example.nbanews.ui.newsline
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.nbanews.domain.NewsLine
@@ -13,7 +12,7 @@ import javax.inject.Inject
 @HiltViewModel
 class NewsLineViewModel @Inject constructor(
     repository: NewsLineRepository
-): ViewModel() {
+) : ViewModel() {
 
     private val _dataState: LiveData<List<NewsLine>> = repository.getNewsLine()
     val dataState: LiveData<List<NewsLine>>

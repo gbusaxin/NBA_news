@@ -1,5 +1,6 @@
 package com.example.nbanews.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.example.nbanews.data.database.DatabaseDao
@@ -23,6 +24,7 @@ class NewsLineRepository constructor(
         try {
             val dto = retrofitService.getNewsLine()
             val dbModel = dto.map { mapper.mapDtoToDbModel(it) }
+            Log.d("CHECK_DOWN",dbModel.toString())
             dao.insertNews(dbModel)
         } catch (e: Exception) {
 

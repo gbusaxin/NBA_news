@@ -1,42 +1,46 @@
 package com.example.nbanews.ui.newsline
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.nbanews.databinding.FragmentHomeBinding
+import androidx.fragment.app.activityViewModels
+import com.example.nbanews.databinding.FragmentNewsLineBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NewsLineFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private var _binding: FragmentNewsLineBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var parentAdapter: NewsLineParentAdapter
+
+    private val viewModel: NewsLineViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(NewsLineViewModel::class.java)
-
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+    ): View? {
+        _binding = FragmentNewsLineBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val rvNewsLine = binding.recyclerViewNewsLine
+        parentAdapter = NewsLineParentAdapter()
+        viewModel.dataState.observe(viewLifecycleOwner) {
+            parentAdapter.parentList = it
+            rvNewsLine.adapter = parentAdapter
+        }
+        parentAdapter.onPublicationClickListener = {
+            Toast.makeText(requireContext(),it.header,Toast.LENGTH_SHORT).show()
+        }
     }
 }

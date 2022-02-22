@@ -5,15 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.newsline.NewsLineFragment"
-    android:background="@color/full_transparent">
-
+    android:background="@color/full_transparent"
+    android:padding="5dp">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewNewsLine"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
