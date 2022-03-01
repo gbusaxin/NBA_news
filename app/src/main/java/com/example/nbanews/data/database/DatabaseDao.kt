@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.nbanews.data.database.model.ClubEntity
 import com.example.nbanews.data.database.model.NewsLineEntity
 
 @Dao
@@ -15,5 +16,11 @@ interface DatabaseDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNews(news: List<NewsLineEntity>)
+
+    @Query("SELECT * FROM table_club")
+    fun getClubs(): LiveData<List<ClubEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertClubs(clubs: List<ClubEntity>)
 
 }

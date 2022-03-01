@@ -8,7 +8,7 @@ import com.example.nbanews.R
 import com.example.nbanews.databinding.ItemChildNewslineBinding
 import com.example.nbanews.domain.Publication
 
-class NewsLineChildAdapter() :
+class NewsLineChildAdapter(val onClick: ((Publication) -> Unit)) :
     RecyclerView.Adapter<NewsLineChildAdapter.NewsLineChildViewHolder>() {
 
     inner class NewsLineChildViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -16,13 +16,12 @@ class NewsLineChildAdapter() :
         val header = binding.textViewNewslineHeader
         val tags = binding.textViewNewslineTags
     }
-    var childList: List<Publication> = listOf()
-    set(value) {
-        field = value
-        notifyDataSetChanged()
-    }
 
-    var onNewsLineClickListener: ((Publication) -> Unit)? = null
+    var childList: List<Publication> = listOf()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsLineChildViewHolder {
         return NewsLineChildViewHolder(
@@ -39,7 +38,7 @@ class NewsLineChildAdapter() :
         holder.header.text = item.header
         holder.tags.text = item.tags
         holder.itemView.setOnClickListener {
-            onNewsLineClickListener?.invoke(item)
+            onClick.invoke(item)
         }
     }
 

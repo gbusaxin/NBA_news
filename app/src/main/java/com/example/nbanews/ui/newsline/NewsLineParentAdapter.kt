@@ -9,7 +9,7 @@ import com.example.nbanews.databinding.ItemParentNewslineBinding
 import com.example.nbanews.domain.NewsLine
 import com.example.nbanews.domain.Publication
 
-class NewsLineParentAdapter() :
+class NewsLineParentAdapter(val publicationClickListener: ((Publication) -> Unit)) :
     RecyclerView.Adapter<NewsLineParentAdapter.NewsLineParentViewHolder>() {
 
     inner class NewsLineParentViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -24,10 +24,6 @@ class NewsLineParentAdapter() :
             notifyDataSetChanged()
         }
 
-    var onPublicationClickListener: ((Publication) -> Unit)? = null
-
-    var ada: NewsLineChildAdapter? = null
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsLineParentViewHolder {
         return NewsLineParentViewHolder(
             LayoutInflater.from(parent.context)
@@ -39,13 +35,11 @@ class NewsLineParentAdapter() :
         val item = parentList[position]
         holder.date.text = item.date
         holder.recyclerViewPublications.apply {
-            ada = NewsLineChildAdapter()
-            ada?.childList = item.publications
-            adapter = ada
+            val childAdapter = NewsLineChildAdapter(publicationClickListener)
+            childAdapter.childList = item.publications
+            adapter = childAdapter
         }
-        holder.itemView.setOnClickListener {
 
-        }
     }
 
     override fun getItemCount(): Int {

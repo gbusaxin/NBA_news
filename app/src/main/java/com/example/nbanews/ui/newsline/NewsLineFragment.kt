@@ -5,10 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.example.nbanews.R
 import com.example.nbanews.databinding.FragmentNewsLineBinding
+import com.example.nbanews.domain.Publication
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,13 +36,16 @@ class NewsLineFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val rvNewsLine = binding.recyclerViewNewsLine
-        parentAdapter = NewsLineParentAdapter()
+
+        val click: ((Publication) -> Unit) = {
+            viewModel.selectData(it)
+            findNavController().navigate(R.id.action_nav_news_line_to_newsLineFragmentDetail)
+        }
+
         viewModel.dataState.observe(viewLifecycleOwner) {
+            parentAdapter = NewsLineParentAdapter(click)
             parentAdapter.parentList = it
             rvNewsLine.adapter = parentAdapter
-        }
-        parentAdapter.onPublicationClickListener = {
-            Toast.makeText(requireContext(),it.header,Toast.LENGTH_SHORT).show()
         }
     }
 }

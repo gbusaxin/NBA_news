@@ -9,7 +9,11 @@
         android:id="@+id/nav_news_line"
         android:name="com.example.nbanews.ui.newsline.NewsLineFragment"
         android:label="@string/news_line"
-        tools:layout="@layout/fragment_news_line" />
+        tools:layout="@layout/fragment_news_line" >
+        <action
+            android:id="@+id/action_nav_news_line_to_newsLineFragmentDetail"
+            app:destination="@id/newsLineFragmentDetail" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_gallery"
@@ -18,8 +22,23 @@
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.nbanews.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_club"
+        android:name="com.example.nbanews.ui.club_stats.ClubFragment"
+        android:label="@string/statistic"
+        tools:layout="@layout/fragment_club" >
+        <action
+            android:id="@+id/action_nav_club_to_clubFragmentDetail"
+            app:destination="@id/clubFragmentDetail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newsLineFragmentDetail"
+        android:name="com.example.nbanews.ui.newsline.NewsLineFragmentDetail"
+        android:label="fragment_news_line_detail"
+        tools:layout="@layout/fragment_news_line_detail" />
+    <fragment
+        android:id="@+id/clubFragmentDetail"
+        android:name="com.example.nbanews.ui.club_stats.ClubFragmentDetail"
+        android:label="fragment_club_detail"
+        tools:layout="@layout/fragment_club_detail" />
 </navigation>
