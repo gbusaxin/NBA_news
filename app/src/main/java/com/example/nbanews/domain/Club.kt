@@ -1,6 +1,8 @@
 package com.example.nbanews.domain
 
+import androidx.annotation.Keep
 
+@Keep
 data class Club(
     val club: String,
     val clubImage: String,

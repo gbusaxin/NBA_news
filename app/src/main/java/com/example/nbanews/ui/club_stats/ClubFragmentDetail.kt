@@ -7,12 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.nbanews.R
 import com.example.nbanews.databinding.FragmentClubDetailBinding
+import com.google.android.material.tabs.TabLayoutMediator
 
 
 class ClubFragmentDetail : Fragment() {
 
     private var _binding:FragmentClubDetailBinding?=null
     private val binding get() = _binding!!
+
+    private val namesOfFragments = listOf(
+        "Скоро",
+        "Результаты"
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,12 +31,28 @@ class ClubFragmentDetail : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewPagerAdapter = ViewPagerClubAdapter(childFragmentManager)
+
+        val fragmentList = listOf(
+            CompositionsFragment(),
+            ClubStatsFragment()
+        )
+
+        val viewPagerAdapter = ViewPagerClubAdapter(
+            fragmentList,
+            childFragmentManager,
+            lifecycle
+        )
         val tabLayout = binding.tabLayout
         val viewPager = binding.viewPager
-        viewPagerAdapter.addFragment(CompositionsFragment(),"Состав")
         viewPager.adapter = viewPagerAdapter
-        tabLayout.setupWithViewPager(viewPager)
+
+        TabLayoutMediator(
+            tabLayout,
+            viewPager
+        ) { tab, position ->
+            tab.text = namesOfFragments[position]
+        }.attach()
+
     }
 
     override fun onDestroy() {

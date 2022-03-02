@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginBottom="16dp"
+    android:padding="6dp"
+    android:background="@color/transparent_25">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/textViewSeason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:text="Сезон" />
+
+    <TextView
+        android:id="@+id/textViewG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:text="G" />
+
+    <TextView
+        android:id="@+id/textViewFG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:text="FG" />
+
+    <TextView
+        android:id="@+id/textViewOFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:text="OFF" />
+
+    <TextView
+        android:id="@+id/textViewRPG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:text="RPG" />
+
+</LinearLayout>

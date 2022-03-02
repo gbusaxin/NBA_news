@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
-    private var disposable:Disposable?=null
+    private var disposable: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_news_line, R.id.nav_gallery, R.id.nav_club
+                R.id.nav_news_line, R.id.nav_matches, R.id.nav_club
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -59,11 +59,11 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    fun setBackgroundImage(){
+    fun setBackgroundImage() {
         val request = ImageRequest
             .Builder(this)
             .data("http://95.217.132.144/nba/background_image.jpg")
-            .target{
+            .target {
                 binding.drawerLayout.background = it
             }
             .build()

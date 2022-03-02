@@ -2,27 +2,24 @@ package com.example.nbanews.ui.club_stats
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.lifecycle.Lifecycle
+import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class ViewPagerClubAdapter(manager: FragmentManager): FragmentPagerAdapter(manager) {
+class ViewPagerClubAdapter(
+    list: List<Fragment>,
+    fm: FragmentManager,
+    lifecycle: Lifecycle
+) : FragmentStateAdapter(
+    fm,
+    lifecycle
+) {
 
-    val fragmentList:MutableList<Fragment> = ArrayList()
-    val titleList:MutableList<String> = ArrayList()
+    private val fragmentList = list
 
-    override fun getCount(): Int {
-        return fragmentList.size
-    }
+    override fun getItemCount() = fragmentList.size
 
-    override fun getItem(position: Int): Fragment {
+    override fun createFragment(position: Int): Fragment {
         return fragmentList[position]
     }
 
-    fun addFragment(fragment: Fragment, title:String){
-        fragmentList.add(fragment)
-        titleList.add(title)
-    }
-
-    override fun getPageTitle(position: Int): CharSequence? {
-        return titleList[position]
-    }
 }

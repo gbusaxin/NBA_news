@@ -1,8 +1,9 @@
 package com.example.nbanews.data.networkdata
 
-import com.example.nbanews.data.networkdata.dto.ClubDto
-import com.example.nbanews.data.networkdata.dto.NewsLineDto
+import com.example.nbanews.data.networkdata.dto.*
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 
 interface RetrofitService {
 
@@ -11,5 +12,14 @@ interface RetrofitService {
 
     @GET("nba_champion_table.json")
     suspend fun getClubs():List<ClubDto>
+
+    @GET("nba_fixtures.json")
+    suspend fun getFixtures():List<FutureMatchDto>
+
+    @GET("nba_results.json")
+    suspend fun getResults():List<ResultMatchDto>
+
+    @POST("splash.php")
+    suspend fun sendLocale(@Body locale: RequestDto): ResponseDto
 
 }

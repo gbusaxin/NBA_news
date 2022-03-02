@@ -1,12 +1,13 @@
 package com.example.nbanews.data.database.model
 
+import androidx.annotation.Keep
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.example.nbanews.data.database.converters.ClubConverter
 import com.example.nbanews.domain.Composition
 import com.example.nbanews.domain.Total
-
+@Keep
 @Entity(tableName = "table_club")
 @TypeConverters(ClubConverter::class)
 class ClubEntity(
